@@ -1,7 +1,7 @@
 /**
  * --- Advent of Code 2023 ---
  *
- * Day 6: TBD
+ * Day 6: Wait For It
  * (Part 2)
  *
  * https://adventofcode.com/2023/day/6#part2
