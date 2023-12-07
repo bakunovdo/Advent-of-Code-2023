@@ -19,7 +19,7 @@ Begin your solution by first generating stub files:
 npm run generate
 ```
 
-This will create a new directory with three files:
+This will create a new directory with four files:
 
 - `1.js`
 - `2.js`
