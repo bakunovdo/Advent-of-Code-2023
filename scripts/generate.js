@@ -4,6 +4,9 @@ import { uniq } from "lodash-es";
 import { resolve } from "path";
 
 import { dateToTz } from "../lib/date.js";
+import { safeWriteFile } from "../lib/files.js";
+import { getInputDay } from "../aoc-libs/fetch-input.js";
+import { getExampleDay } from "../aoc-libs/fetch-example.js";
 
 const HEADER_PATH = "./templates/header.js";
 const STUB_PATH = "./templates/stub.js";
@@ -25,16 +28,6 @@ const hydrateTemplate = (template, props = {}) => {
   }
 
   return hydrated;
-};
-
-const safeWriteFile = (path, content) => {
-  try {
-    if (!existsSync(path) && !existsSync(path)) {
-      writeFile(path, content);
-    }
-  } catch (error) {
-    console.error(error);
-  }
 };
 
 const now = dateToTz("America/New_York");
@@ -75,5 +68,6 @@ if (!existsSync(dir)) {
 
 safeWriteFile(resolve(dir, PART_1_NAME), part1Header + "\n" + stub);
 safeWriteFile(resolve(dir, PART_2_NAME), part2Header + "\n" + stub);
-safeWriteFile(resolve(dir, INPUT_NAME), "");
-safeWriteFile(resolve(dir, EXAMPLE_NAME), "");
+// update
+writeFile(resolve(dir, INPUT_NAME), await getInputDay(day));
+writeFile(resolve(dir, EXAMPLE_NAME), await getExampleDay(day));

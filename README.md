@@ -11,6 +11,14 @@ cd advent-of-code-2023/
 npm install
 ```
 
+### Configure env
+
+In order to use any of the automatic fetching tools, go to .env and place values:
+
+```bash
+AOC_TOKEN="<copy 'Cookie' request header from adventofcode.com in dev tools>"
+```
+
 ### 1. Generate Stub Files
 
 Begin your solution by first generating stub files:
@@ -19,12 +27,12 @@ Begin your solution by first generating stub files:
 npm run generate
 ```
 
-This will create a new directory with four files:
+This will create a new directory with four files and fetch task input(if token provided) and example input:
 
-- `1.js`
-- `2.js`
+- `1.js (part-1)`
+- `2.js (part-2)`
+- `example.txt`
 - `input.txt (ignored)`
-- `example.txt (ignored)`
 
 By default, the directory will be named "wip" and be gitignored. The default
 can be overridden with a command line arg.
