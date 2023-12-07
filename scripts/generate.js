@@ -1,4 +1,5 @@
 import { mkdir, readFile, writeFile } from "fs/promises";
+import { existsSync, lstatSync } from "fs";
 import { uniq } from "lodash-es";
 import { resolve } from "path";
 
@@ -24,6 +25,16 @@ const hydrateTemplate = (template, props = {}) => {
   }
 
   return hydrated;
+};
+
+const safeWriteFile = (path, content) => {
+  try {
+    if (!existsSync(path) && !existsSync(path)) {
+      writeFile(path, content);
+    }
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 const now = dateToTz("America/New_York");
@@ -57,9 +68,12 @@ const part2Header = hydrateTemplate(header, {
 const dirName = process.argv[2]?.padStart(2, "0") || "wip";
 
 const dir = resolve(resolve(process.cwd(), "src"), dirName);
-await mkdir(dir);
 
-writeFile(resolve(dir, PART_1_NAME), part1Header + "\n" + stub);
-writeFile(resolve(dir, PART_2_NAME), part2Header + "\n" + stub);
-writeFile(resolve(dir, INPUT_NAME), "");
-writeFile(resolve(dir, EXAMPLE_NAME), "");
+if (!lstatSync(dir).isDirectory()) {
+  await mkdir(dir);
+}
+
+safeWriteFile(resolve(dir, PART_1_NAME), part1Header + "\n" + stub);
+safeWriteFile(resolve(dir, PART_2_NAME), part2Header + "\n" + stub);
+safeWriteFile(resolve(dir, INPUT_NAME), "");
+safeWriteFile(resolve(dir, EXAMPLE_NAME), "");
