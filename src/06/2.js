@@ -8,7 +8,6 @@
  */
 
 import fs from "fs";
-import { zip } from "lodash-es";
 
 function readFile(name) {
   return fs.readFileSync(new URL(name, import.meta.url), { encoding: "utf-8" });
@@ -24,23 +23,17 @@ const exampleInput = readFile("example.txt");
 function main(input) {
   const lines = input.split("\r\n");
 
-  const allTimes = +lines[0].match(/\d+/g).join("");
-  const allDistances = +lines[1].match(/\d+/g).join("");
+  const time = +lines[0].match(/\d+/g).join("");
+  const distance = +lines[1].match(/\d+/g).join("");
 
-  let product = 1;
   let counts = 0;
 
-  for (let i = 0; i <= allTimes; i++) {
-    const held = i;
-    const speed = held;
-    const way = (allTimes - held) * speed;
-    if (way > allDistances) {
-      counts++;
-    }
+  for (let hold = 0; hold < time; hold += 1) {
+    const reached = (time - hold) * hold;
+    if (reached > distance) counts += 1;
   }
-  product *= counts;
 
-  return product;
+  return counts;
 }
 
 console.log(main(taskInput));

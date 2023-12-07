@@ -8,7 +8,7 @@
  */
 
 import fs from "fs";
-import { zip } from "lodash-es";
+import { zip, reduce, multiply } from "lodash-es";
 
 function readFile(name) {
   return fs.readFileSync(new URL(name, import.meta.url), { encoding: "utf-8" });
@@ -28,21 +28,18 @@ function main(input) {
 
   const races = zip(allTimes, allDistances);
 
-  let product = 1;
-  for (let [time, dist] of races) {
-    let counts = 0;
-    for (let i = 0; i <= time; i++) {
-      const held = i;
-      const speed = held;
-      const way = (time - held) * speed;
-      if (way > dist) {
-        counts++;
-      }
-    }
-    product *= counts;
-  }
+  const wins = races.map(([time, distance]) => {
+    let count = 0;
 
-  return product;
+    for (let hold = 0; hold < time; hold += 1) {
+      const reached = (time - hold) * hold;
+      if (reached > distance) count += 1;
+    }
+
+    return count;
+  });
+
+  return reduce(wins, multiply);
 }
 
 console.log(main(taskInput));

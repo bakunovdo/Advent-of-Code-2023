@@ -46,5 +46,4 @@ function main(input) {
   return sum + lines.length;
 }
 
-//correct: 8549735
 console.log(main(exampleInput));
