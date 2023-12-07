@@ -1,5 +1,5 @@
 import { mkdir, readFile, writeFile } from "fs/promises";
-import { existsSync, lstatSync } from "fs";
+import { existsSync } from "fs";
 import { uniq } from "lodash-es";
 import { resolve } from "path";
 
@@ -69,7 +69,7 @@ const dirName = process.argv[2]?.padStart(2, "0") || "wip";
 
 const dir = resolve(resolve(process.cwd(), "src"), dirName);
 
-if (!lstatSync(dir).isDirectory()) {
+if (!existsSync(dir)) {
   await mkdir(dir);
 }
 
