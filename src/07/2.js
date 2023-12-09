@@ -47,8 +47,6 @@ function getHash(cardsString) {
   const jokers = frequencies["0"];
   delete frequencies["0"];
 
-  console.log(frequencies);
-
   const handHash = Object.values(frequencies).sort(sortDesc);
 
   if (jokers) {
