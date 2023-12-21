@@ -17,7 +17,7 @@ const getInputUrl = (day) => {
 export const getInputDay = async (day) => {
   const url = getInputUrl(day);
 
-  if (!process.env.TOKEN) return "";
+  if (!process.env.AOC_TOKEN) return "";
 
   const response = await fetch(url, {
     method: "GET",
