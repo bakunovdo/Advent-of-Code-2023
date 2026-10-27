@@ -8,7 +8,7 @@
  */
 
 import fs from "fs";
-import { zip, reduce, multiply } from "lodash-es";
+import { ints, lines, zip } from "#tools";
 
 function readFile(name) {
   return fs.readFileSync(new URL(name, import.meta.url), { encoding: "utf-8" });
@@ -21,12 +21,8 @@ const exampleInput = readFile("example.txt");
  * @param {String} input
  */
 function main(input) {
-  const lines = input.split("\r\n");
-
-  const allTimes = lines[0].match(/\d+/g).map(Number);
-  const allDistances = lines[1].match(/\d+/g).map(Number);
-
-  const races = zip(allTimes, allDistances);
+  const rows = lines(input);
+  const races = zip(ints(rows[0]), ints(rows[1]));
 
   const wins = races.map(([time, distance]) => {
     let count = 0;
@@ -39,7 +35,7 @@ function main(input) {
     return count;
   });
 
-  return reduce(wins, multiply);
+  return wins.reduce((product, count) => product * count, 1);
 }
 
 console.log(main(taskInput));

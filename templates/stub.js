@@ -1,15 +1,11 @@
-import fs from "fs";
+import { run } from "#tools/load.js";
 
-function readFile(name) {
-  return fs.readFileSync(new URL(name, import.meta.url), { encoding: "utf-8" });
-}
-
-const taskInput = readFile("input.txt");
-const exampleInput = readFile("example.txt");
+/** Expected answer for example.txt. Leave this unset until the statement gives one. */
+export const exampleAnswer = undefined;
 
 /**
- * @param {String} input
+ * @param {string} source
  */
-function main(input) {}
+export function main(source) {}
 
-console.log(main(exampleInput));
+run(import.meta.url, { main, exampleAnswer });

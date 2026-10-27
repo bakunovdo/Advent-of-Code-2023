@@ -8,7 +8,7 @@
  */
 
 import fs from "fs";
-import { frequency, sortDesc } from "../../lib/array.js";
+import { frequency, sortDesc } from "#tools";
 
 function readFile(name) {
   return fs.readFileSync(new URL(name, import.meta.url), { encoding: "utf-8" });
@@ -43,7 +43,7 @@ function getHash(cardsString) {
   const STRENGTH = "23456789TJQKA";
   const cards = cardsString.split("").map((card) => STRENGTH.indexOf(card));
   const frequencies = frequency(cards);
-  const handHash = Object.values(frequencies).sort(sortDesc);
+  const handHash = [...frequencies.values()].sort(sortDesc);
   return handHash.concat(cards);
 }
 

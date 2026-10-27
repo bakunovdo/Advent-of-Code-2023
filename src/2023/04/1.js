@@ -9,7 +9,6 @@
 
 const fs = require("fs");
 const path = require("path");
-const lodash = require("lodash-es");
 
 const taskInput = fs.readFileSync(path.resolve(__dirname, "input.txt"), { encoding: "utf-8" });
 const exampleInput = fs.readFileSync(path.resolve(__dirname, "example.txt"), { encoding: "utf-8" });
@@ -22,9 +21,9 @@ function main(input) {
     const [winner, hand] = line
       .replace(/Card\s+\d+:/, "")
       .split("|")
-      .map(lodash.trim);
+      .map((part) => part.trim());
 
-    const set = new Set(winner.split(" ").filter(Boolean).map(lodash.trim));
+    const set = new Set(winner.split(" ").filter(Boolean).map((value) => value.trim()));
 
     let acc = 0;
     for (const n of hand.split(" ")) {
