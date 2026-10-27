@@ -1,4 +1,3 @@
-export * from "./date.js";
 export * from "./grid.js";
 export * from "./load.js";
 export * from "./object.js";

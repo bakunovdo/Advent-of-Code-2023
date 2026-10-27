@@ -1,6 +1,6 @@
 # Advent of Code
 
-Solutions live under `src/<year>/<day>/`. Shared helpers live in `tools/` and are imported as `#tools`.
+Solutions live under `src/<year>/<day>/`. Helpers for those solutions live in `tools/` and are imported as `#tools`. The `generate` and `solve` commands live in `scripts/`. Everything they need to fetch puzzles and print results lives in `internal/` and is not part of a solution.
 
 ## Setup
 

@@ -4,11 +4,11 @@ import { relative, resolve } from "path";
 import { pathToFileURL } from "node:url";
 import { Command, InvalidArgumentError } from "commander";
 
-import { dateToTz } from "../tools/date.js";
-import { assertPart, assertPuzzle, resolvePuzzle } from "../tools/args.js";
-import { fail, muted, path as paintPath, title } from "../tools/color.js";
+import { dateToTz } from "../internal/date.js";
+import { assertPart, assertPuzzle, resolvePuzzle } from "../internal/args.js";
+import { fail, muted, path as paintPath, title } from "../internal/color.js";
 import { load } from "../tools/load.js";
-import { printExample, printInput, printInputEmpty } from "../tools/report.js";
+import { printExample, printInput, printInputEmpty } from "../internal/report.js";
 
 const currentAocYear = () => {
   const now = dateToTz("America/New_York");

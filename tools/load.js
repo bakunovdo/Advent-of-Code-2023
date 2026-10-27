@@ -1,7 +1,7 @@
 import fs from "fs";
 import { pathToFileURL } from "node:url";
 
-import { printExample, printInput, printInputEmpty } from "./report.js";
+import { printExample, printInput, printInputEmpty } from "../internal/report.js";
 
 const readSibling = (metaUrl, name, { required }) => {
   const url = new URL(name, metaUrl);

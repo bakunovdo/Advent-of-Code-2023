@@ -3,12 +3,12 @@ import { existsSync, readFileSync } from "fs";
 import { relative, resolve } from "path";
 import { Command, InvalidArgumentError } from "commander";
 
-import { dateToTz } from "../tools/date.js";
-import { safeWriteFile } from "../tools/files.js";
-import { assertPuzzle, resolvePuzzle } from "../tools/args.js";
-import { fail, muted, ok, path as paintPath, title } from "../tools/color.js";
-import { getInputDay } from "../tools/fetch-input.js";
-import { getPuzzlePage } from "../tools/fetch-example.js";
+import { dateToTz } from "../internal/date.js";
+import { safeWriteFile } from "../internal/files.js";
+import { assertPuzzle, resolvePuzzle } from "../internal/args.js";
+import { fail, muted, ok, path as paintPath, title } from "../internal/color.js";
+import { getInputDay } from "../internal/fetch-input.js";
+import { getPuzzlePage } from "../internal/fetch-example.js";
 
 const HEADER_PATH = "./templates/header.js";
 const STUB_PATH = "./templates/stub.js";
